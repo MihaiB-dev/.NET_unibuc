@@ -5,8 +5,8 @@ namespace lab1_8.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly AppDbContext db;
-        public CategoriesController(AppDbContext context)
+        private readonly ApplicationDbContext db;
+        public CategoriesController(ApplicationDbContext context)
         {
             db = context;
         }

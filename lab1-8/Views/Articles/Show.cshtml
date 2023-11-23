@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>@ViewBag.Article.Title</h2>
+<br/>
+<p>@ViewBag.Article.Content</p>
+<br/>
+<p>@ViewBag.Article.Date</p>
+<form method="post" action="/Articles/Delete/@ViewBag.Article.Id">
+    <a type="button" class="btn btn-danger">Delete</a>
+</form>

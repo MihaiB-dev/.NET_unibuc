@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Add an Article</h2>
+
+<form method="post" action="/Articles/New">
+    <label>Title</label>
+    <br />
+    <input type="text" name="Title" />
+    <br/><br/>
+    <label>Content</label>
+    <input type="text" name="Content"/>
+    <br/>
+    <br/>
+    <label>Date</label>
+    <input type="date" name="Date" />
+    <br/>
+    <br/>
+    <button type="submit">Add Article</button>
+</form>

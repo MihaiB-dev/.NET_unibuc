@@ -12,8 +12,8 @@ using lab1_8.Data;
 namespace lab1_8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231123164216_add_articles_categories")]
-    partial class add_articles_categories
+    [Migration("20231123170246_remake_app")]
+    partial class remake_app
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

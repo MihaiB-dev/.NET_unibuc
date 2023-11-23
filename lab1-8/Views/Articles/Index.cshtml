@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>Articles</h2>
+<br />
+<div class="d-flex justify-content-center">
+    <a href="" class="btn btn-success " style="margin-right:5px;">Show all categories</a>
+    <a href="Articles/New" class="btn btn-success ">Create an article</a>
+</div>
+
+@foreach (var article in ViewBag.Articles)
+{
+    <div class="card" sytle="margin:3rem;">
+        <div class="card-body">
+            <h5 class="card-title">@article.Title</h5>
+            <p class="card-text">@article.Content</p>>
+            <p>@article.Date</p>
+
+            <a class="btn btn-outline-info" href="Articles/Edit/@article.Id">Edit</a>
+            <a class="btn btn-outline-info" href="Articles/Show/@article.Id">See the article</a>
+        </div>
+    </div>
+}
+

@@ -6,7 +6,7 @@ Here I will write all of the steps that I took to do this project (lab project)
 - Add login method individual
 - Core 6.0
 
-## Connect Database and C.R.U.D
+## Connect Database and create tables
 
 1. Install Entity Framework core
     - location: Tools -> NuGet Package Manager -> Manage NuGet Packages for Solution. 
@@ -35,3 +35,6 @@ commit "Install entity Framework core and create tables (Article and Category)"
 commit "create connection with the database"
 
 ----
+## Create C.R.U.D
+1. In articles view I added Edit, Index, New, Show
+2. In ArticlesController I added a function for each view, some of them only acessible on post method

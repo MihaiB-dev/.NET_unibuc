@@ -10,7 +10,7 @@ using lab1_8.Data;
 
 namespace lab1_8.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
