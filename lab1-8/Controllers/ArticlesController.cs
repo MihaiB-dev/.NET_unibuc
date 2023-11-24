@@ -28,7 +28,7 @@ namespace lab1_8.Controllers
                                .Where(art => art.Id == id)
                                .First();
             ViewBag.Article = article;
-
+            ViewBag.Comments = article.Comments.OrderByDescending(el => el.Date);
             ViewBag.Category = article.Category;
             return View();
         }
@@ -58,8 +58,16 @@ namespace lab1_8.Controllers
 
         public IActionResult Edit(int id)
         {
-            Article article = db.Articles.Find(id);
+            Article article = db.Articles.Include("Category")
+                                        .Where(art => art.Id == id)
+                                        .First();
             ViewBag.Article = article;
+
+            ViewBag.Category = article.Category;
+            var categories = from categ in db.Categories
+                             select categ;
+            ViewBag.Categories = categories;
+
             return View();
         }
 

@@ -15,9 +15,24 @@
     <br />
     <input type="text" name="Content" value="@ViewBag.Article.Content" />
     <br /><br />
-    <label>Date</label>
-    <br />
-    <input type="date" name="Date" value="@ViewBag.Article.Date" />
-    <br />
+    
+    <select name="CategoryId">
+
+        @foreach (var category in ViewBag.Categories)
+        {
+            if (category.Id == ViewBag.Category.Id)
+            {
+                <option selected="selected" value="@category.Id">@category.CategoryName</option>
+            }
+            else
+            {
+                <option value="@category.Id">
+                    @category.CategoryName
+                </option>
+            }
+        }
+
+    </select>
+
     <button type="submit">Change Article</button>
 </form>
