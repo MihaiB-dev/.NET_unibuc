@@ -4,7 +4,7 @@
 
 namespace lab1_8.Migrations
 {
-    public partial class remake_app : Migration
+    public partial class articles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

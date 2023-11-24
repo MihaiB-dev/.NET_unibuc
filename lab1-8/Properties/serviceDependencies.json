@@ -6,7 +6,8 @@
     },
     "mssql2": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:ArticlesDB"
+      "connectionId": "ConnectionStrings:ArticlesDB",
+      "dynamicId": null
     }
   }
 }

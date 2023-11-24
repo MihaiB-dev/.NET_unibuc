@@ -5,7 +5,9 @@ namespace lab1_8.Models
     public class Category
     {
         [Key]
-        public int Id { get; set; } 
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Numele categoriei este obligatoriu")]
         public string CategoryName { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

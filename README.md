@@ -38,3 +38,32 @@ commit "create connection with the database"
 ## Create C.R.U.D
 1. In articles view I added Edit, Index, New, Show
 2. In ArticlesController I added a function for each view, some of them only acessible on post method
+
+commit "create C.R.U.D and solved database problem"
+
+---
+## Add Comments
+New database:  
+
+Article   
+• Id (int – primary key)   
+• Title (string – titlul este obligatoriu)   
+• Content (string – continutul este obligatoriu)  
+• Date (DateTime)  
+• CategoryId (int – cheie externa – categoria din care face parte 
+articolul)  
+
+Category:   
+• Id (int – primary key)   
+• CategoryName (string – numele este obligatoriu)
+
+Comment:   
+• Id (int – primary key)   
+• Content (string – continutul comentariului este obligatoriu)  
+• Date (DateTime – data la care a fost postat comentariul)  
+• ArticleId (int – cheie externa – articolul caruia ii apartine 
+comentariul)  
+
+1. Change in this way
+2. Add comments in ApplicationDbContext
+3. Migrate and Update
