@@ -8,6 +8,9 @@
 <p>@ViewBag.Article.Content</p>
 <br/>
 <p>@ViewBag.Article.Date</p>
+
+<div><i class="bi bi-globe"></i> @ViewBag.Category.CategoryName</div>
+
 <form method="post" action="/Articles/Delete/@ViewBag.Article.Id">
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>

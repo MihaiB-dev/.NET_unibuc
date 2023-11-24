@@ -1,6 +1,7 @@
 ﻿using lab1_8.Data;
 using lab1_8.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace lab1_8.Controllers
 {
@@ -13,9 +14,7 @@ namespace lab1_8.Controllers
         }
         public IActionResult Index()
         {
-            var articles = from article in db.Articles
-                           orderby article.Date
-                           select article;
+            var articles = db.Articles.Include("Category");
 
             ViewBag.Articles = articles;
 
@@ -24,12 +23,21 @@ namespace lab1_8.Controllers
 
         public ActionResult Show(int id)
         {
-            Article article = db.Articles.Find(id);
+            //de schimbat
+            Article article = db.Articles.Include("Category").Include("Comments")
+                               .Where(art => art.Id == id)
+                               .First();
             ViewBag.Article = article;
+
+            ViewBag.Category = article.Category;
             return View();
         }
 
         public IActionResult New() {
+            var categories = from categ in db.Categories
+                             select categ;
+            ViewBag.Categories = categories;
+
             return View();
         }
 
@@ -38,6 +46,7 @@ namespace lab1_8.Controllers
         {
             try
             {
+                s.Date = DateTime.Now;
                 db.Articles.Add(s);
                 db.SaveChanges();
                 return RedirectToAction("Index");

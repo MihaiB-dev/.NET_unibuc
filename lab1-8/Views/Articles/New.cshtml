@@ -11,13 +11,18 @@
     <br />
     <input type="text" name="Title" />
     <br/><br/>
-    <label>Content</label>
-    <input type="text" name="Content"/>
+    <label>Content Article</label>
+    <textarea name="Content"></textarea>
     <br/>
     <br/>
-    <label>Date</label>
-    <input type="date" name="Date" />
-    <br/>
-    <br/>
-    <button type="submit">Add Article</button>
+    
+    <label>Select category</label>
+
+    <select name="CategoryId">
+        @foreach (var item in ViewBag.Categories)
+        {
+            <option value="@item.Id">@item.CategoryName</option>
+        }
+    </select>
+    <button class="btn btn-success" type="submit">Add Article</button>
 </form>
