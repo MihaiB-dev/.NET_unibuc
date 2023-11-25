@@ -5,14 +5,7 @@
 @{
 }
 
-<h2>@Model.Title</h2>
-<br/>
-<p>@Model.Content</p>
-<br/>
-<p>@Model.Date</p>
-
-<div><i class="bi bi-globe"></i> @ViewBag.Category.CategoryName</div>
-
+@Html.Partial("ArticleInfo", Model)
 
 @* Afisare comentarii impreuna cu butoanele de editare si stergere *@
 
