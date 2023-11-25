@@ -19,6 +19,11 @@ namespace lab1_8.Controllers
 
             ViewBag.Articles = articles;
 
+            //one message from delete
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Msg = TempData["message"].ToString();
+            }
             return View();
         }
 
@@ -69,6 +74,7 @@ namespace lab1_8.Controllers
                 s.Date = DateTime.Now;
                 db.Articles.Add(s);
                 db.SaveChanges();
+                TempData["message"] = "The article " + s.Title + " has been created";
                 return RedirectToAction("Index");
             }
             catch (Exception) {
@@ -81,12 +87,9 @@ namespace lab1_8.Controllers
             Article article = db.Articles.Include("Category")
                                         .Where(art => art.Id == id)
                                         .First();
-            
 
-            ViewBag.Category = article.Category;
-            var categories = from categ in db.Categories
-                             select categ;
-            ViewBag.Categories = categories;
+
+            article.Listcateg = GetAllCategories();
 
             return View(article);
         }
@@ -102,12 +105,14 @@ namespace lab1_8.Controllers
                 article.Date = requestArticle.Date;
 
                 db.SaveChanges();
+                TempData["message"] = "The articles has been modified";
                 return RedirectToAction("Index");
 
             }
             catch (Exception)
             {
-                return RedirectToAction("Edit", article.Id);
+
+                return View(requestArticle);
             }
 
         }
@@ -118,6 +123,8 @@ namespace lab1_8.Controllers
             Article article = db.Articles.Find(id);
             db.Articles.Remove(article);
             db.SaveChanges();
+
+            TempData["message"] = "Article with name " + article.Title + " has been deleted succesfully";
             return RedirectToAction("Index");
         }
 

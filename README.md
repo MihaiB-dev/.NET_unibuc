@@ -68,9 +68,9 @@ comentariul)
 2. Add comments in ApplicationDbContext
 3. Migrate and Update
 
-### Add C.R.U.D for categories and comments 
+## Add C.R.U.D for categories and comments 
 
-### Optimize the current code with functions
+## Optimize the current code with functions
 
 1. Change ViewBag with model when I could
 2. Add a dropdown using @Html.DropDownListFor when adding a new article
@@ -78,3 +78,9 @@ comentariul)
     - use in new function the previous function to add all categories
     - add in article class a list of all categories
     - add in html new (in view) @Html.DropDownListFor
+
+## Add confirmation messages
+Example with delete articles
+1. create a temp data in delete action with a name.
+2. In redirect route from delete verify if a temp data is there. If so, add it in the viewBag.
+3. print it on View

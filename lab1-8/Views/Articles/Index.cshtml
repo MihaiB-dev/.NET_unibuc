@@ -5,6 +5,13 @@
 }
 <h2>Articles</h2>
 <br />
+
+@if(ViewBag.Msg != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">
+        @ViewBag.Msg
+    </h2>
+}
 <div class="d-flex justify-content-center">
     <a href="Categories/Index" class="btn btn-success " style="margin-right:5px;">Show all categories</a>
     <a href="Articles/New" class="btn btn-success ">Create an article</a>
