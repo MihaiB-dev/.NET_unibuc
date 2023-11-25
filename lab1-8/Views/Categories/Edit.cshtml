@@ -7,10 +7,11 @@
 <form method="post" action="/Categories/Edit/@Model.Id">
 
 
-    <label>Nume categorie</label>
-    <br /> <input type="text" name="CategoryName" value="@Model.CategoryName" />
+    @Html.Label("CategoryName", "Edit Category")
+    <br />
+    @Html.Editor("CategoryName", new { htmlAttributes = new { @class = "form-control" } })
     <br /><br />
 
-    <button class="btn btn-success" type="submit">Modifica categoria</button>
+    <button class="btn btn-success" type="submit">Edit categories</button>
 </form>
 

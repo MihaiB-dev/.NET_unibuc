@@ -8,6 +8,6 @@ namespace lab1_8.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Numele categoriei este obligatoriu")]
         public string CategoryName { get; set; }
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Article>? Articles { get; set; }
     }
 }

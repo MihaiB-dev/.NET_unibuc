@@ -16,6 +16,10 @@ namespace lab1_8.Controllers
             var categories = db.Categories;
             ViewBag.Categories = categories;
 
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Msg = TempData["message"].ToString();
+            }
             return View();
         }
 
@@ -30,14 +34,15 @@ namespace lab1_8.Controllers
         [HttpPost]
         public IActionResult New(Category cat)
         {
-            try
+            if(ModelState.IsValid)
             {
                 db.Categories.Add(cat);
                 db.SaveChanges();
+                TempData["message"] = "The category " + cat.CategoryName + " has been created";
                 return RedirectToAction("Index");
             }
-            catch(Exception ) {
-                return View();
+            else{
+                return View(cat);
             }
         }
         
@@ -50,16 +55,17 @@ namespace lab1_8.Controllers
         public IActionResult Edit(int id, Category functcategory)
         {
             Category category = db.Categories.Find(id);
-            try
+            if(ModelState.IsValid)
             {
                 category.CategoryName = functcategory.CategoryName;
                 db.SaveChanges();
+                TempData["message"] = "The category " + functcategory.CategoryName + " has been edited";
                 return RedirectToAction("Index");
 
-            }catch(Exception)
+            }else
             {
-                ViewBag.category = functcategory;
-                return View();
+                // ViewBag.category = functcategory;
+                return View(functcategory);
             }
 
         }

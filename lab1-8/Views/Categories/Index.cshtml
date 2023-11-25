@@ -5,6 +5,13 @@
 <h2>@ViewBag.Title</h2>
 <br />
 
+@if (ViewBag.Msg != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">
+        @ViewBag.Msg
+    </h2>
+}
+
 <a href="/Articles/Index">Inapoi la articole</a>
 <br />
 <br />

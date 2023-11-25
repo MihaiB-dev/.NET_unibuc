@@ -9,6 +9,13 @@
 
 @* Afisare comentarii impreuna cu butoanele de editare si stergere *@
 
+@if(ViewBag.Msg != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">
+        @ViewBag.Msg
+    </h2>
+}
+
 @foreach (var comm in ViewBag.Comments)
 {
     <div class="container">
@@ -51,7 +58,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="card">
-                <form method="post" action="/Comments/New">
+                <form method="post" action="/Articles/Show">
                     <div class="card-body">
                         @*Pun acest articol ca sa stiu in ce articol ma aflu*@
 
@@ -61,6 +68,7 @@
                         <br />
 
                         <textarea class="form-control" name="Content"></textarea>
+                        @Html.ValidationMessage("Content", null, new {@class="text-danger"})
                         <br />
                         
                         <button class="btn btn-success " type="submit">Adauga comentariul</button>

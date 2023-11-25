@@ -27,8 +27,31 @@ namespace lab1_8.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Show([FromForm] Comment comment)
+        {
+            comment.Date = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return Redirect("/Articles/Show/" + comment.ArticleId);
+            }
+            else
+            {
+                Article art = db.Articles.Include("Category").Include("Comments")
+                .Where(art => art.Id == comment.ArticleId)
+                .First();
+                //return Redirect("/Articles/Show/" + comm.ArticleId);
+                return View(art);
+            }
+        }
         public ActionResult Show(int id)
         {
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Msg = TempData["message"].ToString();
+            }
 
             Article article = db.Articles.Include("Category").Include("Comments")
                                .Where(art => art.Id == id)

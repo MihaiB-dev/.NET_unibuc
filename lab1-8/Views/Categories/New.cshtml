@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model lab1_8.Models.Category
+
+
+<h2>Adaugare Categorie</h2>
+
+
+<form method="post" action="/Categories/New">
+
+    @Html.Label("CategoryName", "Category name")
+    <br />
+
+    @Html.TextBox("CategoryName", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.CategoryName, null, new{@class = "form-control"})
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Add category</button>
+
+</form>
+

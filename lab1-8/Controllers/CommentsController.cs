@@ -12,21 +12,6 @@ namespace lab1_8.Controllers
             db = context;
         }
 
-        [HttpPost]
-        public IActionResult New(Comment requestComment)
-        {
-            requestComment.Date = DateTime.Now;
-            try
-            {
-                db.Comments.Add(requestComment);
-                db.SaveChanges();
-                return Redirect("/Articles/Show/"+requestComment.ArticleId);
-            }catch (Exception ) {
-                return Redirect("/Articles/Show/"+requestComment.ArticleId);
-            }
-            
-        }
-
         public IActionResult Delete(int id)
         {
             Comment comm = db.Comments.Find(id);
