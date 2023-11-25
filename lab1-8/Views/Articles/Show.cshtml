@@ -1,13 +1,15 @@
-﻿@*
+﻿@model lab1_8.Models.Article
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<h2>@ViewBag.Article.Title</h2>
+
+<h2>@Model.Title</h2>
 <br/>
-<p>@ViewBag.Article.Content</p>
+<p>@Model.Content</p>
 <br/>
-<p>@ViewBag.Article.Date</p>
+<p>@Model.Date</p>
 
 <div><i class="bi bi-globe"></i> @ViewBag.Category.CategoryName</div>
 
@@ -60,7 +62,7 @@
                     <div class="card-body">
                         @*Pun acest articol ca sa stiu in ce articol ma aflu*@
 
-                        <input type="hidden" name="ArticleId" value="@ViewBag.Article.Id" />
+                        <input type="hidden" name="ArticleId" value="@Model.Id" />
                         
                         <label>Continut comentariu</label>
                         <br />
@@ -80,6 +82,6 @@
 
 </div>
 
-<form method="post" action="/Articles/Delete/@ViewBag.Article.Id">
+<form method="post" action="/Articles/Delete/@Model.Id">
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>

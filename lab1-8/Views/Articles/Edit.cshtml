@@ -3,17 +3,18 @@
 *@
 @{
 }
+@model lab1_8.Models.Article
 <h2>Editare student</h2>
 <br />
 <form method="post"
-      action="/Articles/Edit/@ViewBag.Article.Id">
+      action="/Articles/Edit/@Model.Id">
     <label>Title</label>
     <br />
-    <input type="text" name="Title" value="@ViewBag.Article.Id" />
+    <input type="text" name="Title" value="@Model.Id" />
     <br /><br />
     <label>Content</label>
     <br />
-    <input type="text" name="Content" value="@ViewBag.Article.Content" />
+    <input type="text" name="Content" value="@Model.Content" />
     <br /><br />
     
     <select name="CategoryId">

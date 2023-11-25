@@ -3,26 +3,28 @@
 *@
 @{
 }
+@model lab1_8.Models.Article
 
 <h2>Add an Article</h2>
 
 <form method="post" action="/Articles/New">
-    <label>Title</label>
+    @Html.Label("Title","Article Title")
     <br />
-    <input type="text" name="Title" />
+   @Html.TextBox("Title", null, new {@class = "form-control"})
     <br/><br/>
-    <label>Content Article</label>
-    <textarea name="Content"></textarea>
+    @Html.Label("Content", "Article Content")
+    @Html.TextArea("Content", null, new {@class="form-control"})
     <br/>
     <br/>
     
     <label>Select category</label>
 
-    <select name="CategoryId">
-        @foreach (var item in ViewBag.Categories)
-        {
-            <option value="@item.Id">@item.CategoryName</option>
-        }
-    </select>
+    @Html.DropDownListFor(m => m.CategoryId,
+    new SelectList(Model.Listcateg, "Value", "Text"),
+    "Selectati categoria",
+    new { @class = "form-control" })
+
+    <br />
+    
     <button class="btn btn-success" type="submit">Add Article</button>
 </form>

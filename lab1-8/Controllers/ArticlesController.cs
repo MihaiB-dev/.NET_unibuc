@@ -1,6 +1,7 @@
 ﻿using lab1_8.Data;
 using lab1_8.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace lab1_8.Controllers
@@ -27,18 +28,37 @@ namespace lab1_8.Controllers
             Article article = db.Articles.Include("Category").Include("Comments")
                                .Where(art => art.Id == id)
                                .First();
-            ViewBag.Article = article;
+            
             ViewBag.Comments = article.Comments.OrderByDescending(el => el.Date);
             ViewBag.Category = article.Category;
-            return View();
+            return View(article);
         }
 
-        public IActionResult New() {
-            var categories = from categ in db.Categories
-                             select categ;
-            ViewBag.Categories = categories;
+        public IEnumerable<SelectListItem> GetAllCategories()
+        {
+            // generate a list of type SelectListItem without elements
+            var selectList = new List<SelectListItem>();
+            // extragem toate categoriile din baza de date
+            var categories = from cat in db.Categories
+                             select cat;
+            // iteram prin categorii
 
-            return View();
+            // Sau se poate implementa astfel:
+            foreach (var category in categories)
+            {
+            var listItem = new SelectListItem();
+            listItem.Value = category.Id.ToString();
+            listItem.Text = category.CategoryName.ToString();
+            selectList.Add(listItem);
+            }
+            // returnam lista de categorii
+            return selectList;
+        }
+        public IActionResult New() {
+            Article article = new Article();
+            article.Listcateg = GetAllCategories();
+
+            return View(article);
         }
 
         [HttpPost]
@@ -61,14 +81,14 @@ namespace lab1_8.Controllers
             Article article = db.Articles.Include("Category")
                                         .Where(art => art.Id == id)
                                         .First();
-            ViewBag.Article = article;
+            
 
             ViewBag.Category = article.Category;
             var categories = from categ in db.Categories
                              select categ;
             ViewBag.Categories = categories;
 
-            return View();
+            return View(article);
         }
 
         [HttpPost]

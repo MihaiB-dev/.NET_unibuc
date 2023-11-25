@@ -20,10 +20,8 @@ namespace lab1_8.Controllers
         }
 
         public IActionResult Show(int id) {
-
-            var category = db.Categories.Find(id);
-            ViewBag.Category = category;
-           return View();
+           Category category = db.Categories.Find(id);
+           return View(category);
         }
         public IActionResult New() {
             return View();
@@ -44,10 +42,8 @@ namespace lab1_8.Controllers
         }
         
         public IActionResult Edit(int id) {
-            var category = db.Categories.Find(id);
-            ViewBag.Category = category;
-            return View();
-            
+            Category category = db.Categories.Find(id);
+            return View(category);   
         }
 
         [HttpPost]

@@ -1,14 +1,14 @@
 ﻿@{
     ViewBag.Title = "Editare categorie";
 }
-
+@model lab1_8.Models.Category
 <h2>@ViewBag.Title</h2>
 
-<form method="post" action="/Categories/Edit/@ViewBag.Category.Id">
+<form method="post" action="/Categories/Edit/@Model.Id">
 
 
     <label>Nume categorie</label>
-    <br /> <input type="text" name="CategoryName" value="@ViewBag.Category.CategoryName" />
+    <br /> <input type="text" name="CategoryName" value="@Model.CategoryName" />
     <br /><br />
 
     <button class="btn btn-success" type="submit">Modifica categoria</button>

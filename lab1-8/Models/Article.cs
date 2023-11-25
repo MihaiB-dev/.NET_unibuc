@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lab1_8.Models
 {
@@ -15,5 +17,8 @@ namespace lab1_8.Models
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> Listcateg { get; set; }
     }
 }
