@@ -6,25 +6,31 @@
 @model lab1_8.Models.Article
 
 <h2>Add an Article</h2>
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-<form method="post" action="/Articles/New">
+@using (Html.BeginForm(actionName: "New", controllerName:"Articles"))
+{
     @Html.Label("Title","Article Title")
     <br />
    @Html.TextBox("Title", null, new {@class = "form-control"})
+
+   @Html.ValidationMessageFor(m => m.Title, null, new{@class = "text-danger"})
     <br/><br/>
     @Html.Label("Content", "Article Content")
     @Html.TextArea("Content", null, new {@class="form-control"})
+
+    @Html.ValidationMessageFor(m => m.Content, null, new{@class ="text-danger"})
     <br/>
     <br/>
-    
+   
     <label>Select category</label>
 
-    @Html.DropDownListFor(m => m.CategoryId,
-    new SelectList(Model.Listcateg, "Value", "Text"),
-    "Selectati categoria",
-    new { @class = "form-control" })
-
+    <label>Selectati categoria</label>
+    @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Listcateg, "Value", "Text"),
+"Select Category", new { @class = "form-control" })
+    @Html.ValidationMessage("CategoryId", null, new { @class = "text-danger" })
     <br />
     
     <button class="btn btn-success" type="submit">Add Article</button>
-</form>
+
+}

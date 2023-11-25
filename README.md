@@ -84,3 +84,41 @@ Example with delete articles
 1. create a temp data in delete action with a name.
 2. In redirect route from delete verify if a temp data is there. If so, add it in the viewBag.
 3. print it on View
+Add this to edit and new on articles
+
+## Validation messages
+1. add what validations are needed in classes and make sure that foreignkeys can be null in order to verify them.
+
+2. Add @html.validationMessageFor in the view where objects can be null.
+3. Add @html.validationSummary and add into css : 
+```css
+
+field-validation-valid {
+display: none;
+}
+.validation-summary-valid {
+display: none;
+}
+```
+4. Change the controller so that if ModelState is valid then add the value to the database, else return the view with the current values.
+```c#
+//example
+[HttpPost]
+public IActionResult New(Article article)
+{
+article.Date = DateTime.Now;
+article.Categ = GetAllCategories();
+if (ModelState.IsValid)
+{
+db.Articles.Add(article);
+db.SaveChanges();
+TempData["message"] = "Articolul a fost adaugat";
+return RedirectToAction("Index");
+}
+else
+{
+return View(article);
+}
+}
+
+```

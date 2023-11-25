@@ -29,7 +29,7 @@ namespace lab1_8.Controllers
 
         public ActionResult Show(int id)
         {
-            //de schimbat
+
             Article article = db.Articles.Include("Category").Include("Comments")
                                .Where(art => art.Id == id)
                                .First();
@@ -69,16 +69,17 @@ namespace lab1_8.Controllers
         [HttpPost]
         public IActionResult New(Article s)
         {
-            try
+            s.Date = DateTime.Now;
+            s.Listcateg = GetAllCategories();
+            if (ModelState.IsValid)
             {
-                s.Date = DateTime.Now;
                 db.Articles.Add(s);
                 db.SaveChanges();
                 TempData["message"] = "The article " + s.Title + " has been created";
                 return RedirectToAction("Index");
             }
-            catch (Exception) {
-                return View();
+            else {
+                return View(s);
             }
         }
 
@@ -97,19 +98,20 @@ namespace lab1_8.Controllers
         [HttpPost]
         public IActionResult Edit(int id, Article requestArticle) {
             Article article = db.Articles.Find(id);
+            requestArticle.Listcateg = GetAllCategories();
 
-            try
+            if(ModelState.IsValid)
             {
                 article.Title = requestArticle.Title;
                 article.Content = requestArticle.Content;
-                article.Date = requestArticle.Date;
+                article.CategoryId = requestArticle.CategoryId;
 
                 db.SaveChanges();
-                TempData["message"] = "The articles has been modified";
+                TempData["message"] = "The articles" + article.Title + " has been modified";
                 return RedirectToAction("Index");
 
             }
-            catch (Exception)
+            else
             {
 
                 return View(requestArticle);
